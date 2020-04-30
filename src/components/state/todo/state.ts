@@ -1,5 +1,5 @@
 import {Reducer} from "redux";
-import {Actions, ADD_TODO} from "./actions";
+import {Actions, ADD_TODO, COMPLETE_TODO, REMOVE_TODO} from "./actions";
 
 export interface Todo {
     id: number;
@@ -33,6 +33,25 @@ export const todosAppReducer: Reducer<State, Actions> = (state: State = defaultS
                         completed: false,
                     }
                 ]
+            }
+        }
+        case REMOVE_TODO: {
+            return {
+                ...state,
+                todosList: state.todosList.filter((todo) => {
+                    return todo.id !== action.payload.id
+                })
+            }
+        }
+        case COMPLETE_TODO: {
+            return {
+                ...state,
+                todosList: state.todosList.map((todo) => {
+                    return {
+                        ...todo,
+                        completed: todo.id === action.payload.id ? true : todo.completed,
+                    }
+                })
             }
         }
         default: {

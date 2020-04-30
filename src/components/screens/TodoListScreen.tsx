@@ -2,14 +2,15 @@ import React from "react";
 import {State} from "../state/state";
 import {connect} from "react-redux";
 import {Todo} from "../state/todo/state";
-import {addTodo} from "../state/todo/actionCreator";
+import {addTodo, completeTodo, removeTodo} from "../state/todo/actionCreator";
 
 interface StateProps {
     todosList: Todo[];
 }
 
 interface DispatchProps {
-
+    onRemoveTodo: (id: number) => void;
+    onCompleteTodo: (id: number) => void;
 }
 
 const TodoListScreen: React.FunctionComponent<StateProps & DispatchProps> = (props) => {
@@ -30,8 +31,8 @@ const TodoListScreen: React.FunctionComponent<StateProps & DispatchProps> = (pro
                     <td>{todo.owner}</td>
                     <td>{todo.text}</td>
                     <td>{todo.completed ? "Yes" : "No"}</td>
-                    <td><button>Complete!</button></td>
-                    <td><button>Delete!</button></td>
+                    <td>{!todo.completed && (<button onClick={() => {props.onCompleteTodo(todo.id)}}>Complete!</button>)}</td>
+                    <td><button onClick={() => {props.onRemoveTodo(todo.id)}}>Delete!</button></td>
                 </tr>
             ))}
         </table>
@@ -45,6 +46,12 @@ export const ConnectedTodoListScreen = connect(
     (dispatch) => ({
         onAddTodo: (text: string, owner: string) => {
             dispatch(addTodo(text, owner));
+        },
+        onRemoveTodo: (id: number) => {
+            dispatch(removeTodo(id))
+        },
+        onCompleteTodo: (id: number) => {
+            dispatch(completeTodo(id))
         }
     }),
 )(TodoListScreen)
