@@ -13,7 +13,9 @@ export interface State {
 }
 
 export const defaultState: State = {
-    todosList: [],
+    todosList: [
+        {id: 0, completed: false, text: "test", owner: "Michael"}
+    ],
 }
 
 let lastTodoId = 1;
