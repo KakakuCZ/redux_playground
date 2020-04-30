@@ -1,7 +1,39 @@
 import React from "react";
+import {State} from "../state/state";
+import {connect} from "react-redux";
+import {Todo} from "../state/todo/state";
+import {addTodo} from "../state/todo/actionCreator";
 
-export const TodoListScreen = () => {
-    return <div>
+interface StateProps {
+    todosList: Todo[];
+}
+
+interface DispatchProps {
+
+}
+
+const TodoListScreen: React.FunctionComponent<StateProps & DispatchProps> = (props) => {
+    return <div className={"content"}>
         TODOLIST SCREEN
+        <table>
+            {props.todosList.map((todo) => (
+                <tr>
+                    <td>{todo.id}</td>
+                    <td>{todo.owner}</td>
+                    <td>{todo.text}</td>
+                </tr>
+            ))}
+        </table>
     </div>
 }
+
+export const ConnectedTodoListScreen = connect(
+    ({todosApp}: State): StateProps => ({
+        todosList: todosApp.todosList
+    }),
+    (dispatch) => ({
+        onAddTodo: (text: string, owner: string) => {
+            dispatch(addTodo(text, owner));
+        }
+    }),
+)(TodoListScreen)

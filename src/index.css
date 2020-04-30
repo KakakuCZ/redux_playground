@@ -16,6 +16,7 @@ body, html {
     display: flex;
     list-style-type: none;
     margin: 0;
+    padding: 0 80px;
 }
 
 .navigation li {
@@ -30,4 +31,8 @@ body, html {
 .navigation li:hover {
     cursor: pointer;
     background-color: lightblue;
+}
+
+.content {
+    padding: 20px 80px;
 }

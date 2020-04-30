@@ -7,8 +7,8 @@ import {
 } from "react-router-dom";
 import {Header} from "./components/header/Header";
 import {HomeScreen} from "./components/screens/HomeScreen";
-import {TodoListScreen} from "./components/screens/TodoListScreen";
-import {AddTodoScreen} from "./components/screens/AddTodoScreen";
+import {ConnectedTodoListScreen} from "./components/screens/TodoListScreen";
+import {ConnectedAddTodoScreen} from "./components/screens/AddTodoScreen";
 
 function App() {
   return (
@@ -24,11 +24,11 @@ function App() {
 
               <Switch>
                   <Route path={"/todoList"}>
-                      <TodoListScreen/>
+                      <ConnectedTodoListScreen/>
                   </Route>
 
                   <Route path={"/addTodo"}>
-                      <AddTodoScreen/>
+                      <ConnectedAddTodoScreen/>
                   </Route>
 
                   <Route path={"/"}>
