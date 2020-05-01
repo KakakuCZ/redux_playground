@@ -1,8 +1,14 @@
-import {createStore} from "redux";
+import {applyMiddleware, compose, createStore} from "redux";
 import {reducers} from "./state";
+import thunk from "redux-thunk";
 
 // @ts-ignore
 const anyWindow: any = window;
-const enhancers = anyWindow.devToolsExtension ? anyWindow.devToolsExtension() : (f: any) => f;
 
-export const store = createStore(reducers, enhancers)
+export const store = createStore(
+    reducers,
+    compose(
+        applyMiddleware(thunk),
+        anyWindow.devToolsExtension ? anyWindow.devToolsExtension() : (f: any) => f
+    )
+)
