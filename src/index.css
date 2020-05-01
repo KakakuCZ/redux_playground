@@ -55,3 +55,42 @@ td, th {
     padding: 5px;
     font-size: 18px;
 }
+
+.flashMessageScreen {
+    margin-top: 300px;
+}
+
+.flashMessageScreen button{
+    padding: 20px;
+    font-size: 24px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.flashMessagesWrapper {
+    position: fixed;
+    width: 20%;
+    top: 100px;
+    right: 0;
+}
+
+.flashMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.warning {
+    background-color: rgba(255, 164, 3, 0.2);
+}
+
+.info {
+    background-color: rgba(36, 112, 248, 0.2);
+}
+
+.error {
+    background-color: rgba(206, 54, 54, 0.2);
+}

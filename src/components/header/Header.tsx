@@ -1,12 +1,49 @@
 import * as React from "react";
 import {ReactNode} from "react";
+import {connect} from "react-redux";
+import {State} from "../state/state";
+import {FlashMessage} from "../state/flashMessage/FlashMessage";
+import {hideMessage} from "../state/flashMessage/actionCreator";
 
-interface Props {
+interface OwnProps {
     children: ReactNode
 }
 
-export const Header = (props: Props) => {
+interface StateProps {
+    flashMessagesList: FlashMessage[];
+}
+
+interface DispatchProps {
+    hideMessageById: (id: number) => void;
+}
+
+const Header: React.FunctionComponent<OwnProps & StateProps & DispatchProps> = (props) => {
     return <div className={"header"}>
         {props.children}
+
+        {props.flashMessagesList && props.flashMessagesList.length > 0 && (
+            <div className={"flashMessagesWrapper"}>
+                {props.flashMessagesList.map((flashMessage) => (
+                    <div
+                        key={flashMessage.id}
+                        className={`flashMessage ${flashMessage.type}`}
+                        onClick={() => {props.hideMessageById(flashMessage.id)}}
+                    >
+                        {flashMessage.text}
+                    </div>
+                ))}
+            </div>
+        )}
     </div>
 }
+
+export const ConnectedHeader = connect<StateProps, DispatchProps, OwnProps, State>(
+    ({flashMessages}: State): StateProps => ({
+        flashMessagesList: flashMessages.flashMessageList
+    }),
+    (dispatch) => ({
+        hideMessageById: (id: number) => {
+            dispatch(hideMessage(id));
+        }
+    })
+)(Header)

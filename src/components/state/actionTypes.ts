@@ -4,7 +4,7 @@ interface Action extends ReduxAction {
     type: string;
 }
 
-interface ActionWithoutPayload<Type extends string> extends Action {
+export interface ActionWithoutPayload<Type extends string> extends Action {
     type: Type;
 }
 
