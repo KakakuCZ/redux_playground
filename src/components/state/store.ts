@@ -2,7 +2,6 @@ import {applyMiddleware, compose, createStore} from "redux";
 import {reducers} from "./state";
 import thunk from "redux-thunk";
 
-// @ts-ignore
 const anyWindow: any = window;
 
 export const store = createStore(
