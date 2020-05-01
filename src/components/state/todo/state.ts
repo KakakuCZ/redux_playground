@@ -18,7 +18,6 @@ export const defaultState: State = {
     ],
 }
 
-let lastTodoId = 1;
 export const todosAppReducer: Reducer<State, Actions> = (state: State = defaultState, action: Actions): State => {
     switch (action.type) {
         case ADD_TODO: {
@@ -27,7 +26,7 @@ export const todosAppReducer: Reducer<State, Actions> = (state: State = defaultS
                 todosList: [
                     ...state.todosList,
                     {
-                        id: lastTodoId++,
+                        id: action.payload.id,
                         text: action.payload.text,
                         owner: action.payload.owner,
                         completed: false,
