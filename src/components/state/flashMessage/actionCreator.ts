@@ -4,7 +4,9 @@ import {
     HideAllFlashMessagesAction,
     HideFlashMessageAction,
     SHOW_FLASH_MESSAGE,
-    ShowFlashMessageAction
+    ShowFlashMessageAction,
+    TOGGLE_AUTO_HIDE,
+    ToggleAutoHideAction
 } from "./actions";
 import {FlashMessageType} from "./FlashMessage";
 import {ThunkAction} from "../thunk";
@@ -14,6 +16,8 @@ export function showMessage(message: string, messageType: FlashMessageType): Thu
     const messageId = lastMessageId++;
 
     return (dispatch, getState) => {
+        const state = getState();
+
         dispatch({
             type: SHOW_FLASH_MESSAGE,
             payload: {
@@ -23,9 +27,12 @@ export function showMessage(message: string, messageType: FlashMessageType): Thu
             },
         });
 
-        if (getState().flashMessages.autoHide) {
+        if (state.flashMessages.autoHide) {
             setTimeout(() => {
-                dispatch(hideMessage(messageId))
+                //We must call getState because state could potentialy change between timeout start and end
+                if (getState().flashMessages.autoHide) {
+                    dispatch(hideMessage(messageId))
+                }
             }, 1000)
         }
     }
@@ -43,5 +50,11 @@ export function hideMessage(id: number): HideFlashMessageAction {
         payload: {
             id: id,
         },
+    }
+}
+
+export function toggleAutoHide(): ToggleAutoHideAction {
+    return {
+        type: TOGGLE_AUTO_HIDE,
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import {hideAllMessages, showMessage} from "../state/flashMessage/actionCreator";
+import {hideAllMessages, showMessage, toggleAutoHide} from "../state/flashMessage/actionCreator";
 import {FlashMessageType} from "../state/flashMessage/FlashMessage";
 import {State} from "../state/state";
 import {connect} from "../state/connect";
@@ -7,10 +7,12 @@ import {connect} from "../state/connect";
 interface DispatchProps {
     showFlashMessage: (message: string, messageType: FlashMessageType) => void;
     hideAllMessages: () => void;
+    toggleAutoHide: () => void;
 }
 
 interface StateProps {
     flashMessagesCreated: number;
+    isAutohideMessageEnabled: boolean;
 }
 
 const FlashMessageScreen = (props: DispatchProps & StateProps) => {
@@ -42,14 +44,22 @@ const FlashMessageScreen = (props: DispatchProps & StateProps) => {
             }}
         >
             Hide ALL messages!
-        </button> <br />
+        </button>
+        <button
+            className={`${props.isAutohideMessageEnabled ? "green" : "red"}`}
+            onClick={props.toggleAutoHide}
+        >
+            Autohide messages: {props.isAutohideMessageEnabled ? "On" : "Off"}
+        </button>
+        <br />
         <strong>Count of created messages: {props.flashMessagesCreated}</strong>
     </div>
 }
 
 export const ConnectedFlashMessageScreen = connect(
     ({flashMessages}: State) => ({
-        flashMessagesCreated: flashMessages.flashMessagesCreated
+        flashMessagesCreated: flashMessages.flashMessagesCreated,
+        isAutohideMessageEnabled: flashMessages.autoHide,
     }),
     (dispatch) => ({
         showFlashMessage: (message: string, messageType: FlashMessageType) => {
@@ -57,6 +67,9 @@ export const ConnectedFlashMessageScreen = connect(
         },
         hideAllMessages: () => {
             dispatch(hideAllMessages());
+        },
+        toggleAutoHide: () => {
+            dispatch(toggleAutoHide());
         }
     }),
 )(FlashMessageScreen)

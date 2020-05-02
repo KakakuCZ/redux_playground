@@ -1,6 +1,6 @@
 import {FlashMessage} from "./FlashMessage";
 import {Reducer} from "redux";
-import {Actions, HIDE_ALL_FLASH_MESSAGES, HIDE_FLASH_MESSAGE, SHOW_FLASH_MESSAGE} from "./actions";
+import {Actions, HIDE_ALL_FLASH_MESSAGES, HIDE_FLASH_MESSAGE, SHOW_FLASH_MESSAGE, TOGGLE_AUTO_HIDE} from "./actions";
 
 export interface State {
     flashMessageList: FlashMessage[];
@@ -43,6 +43,11 @@ export const flashMessageReducer: Reducer<State, Actions> = (
             return {
                 ...state,
                 flashMessageList: [],
+            }
+        case TOGGLE_AUTO_HIDE:
+            return {
+                ...state,
+                autoHide: !state.autoHide,
             }
         default:
             return state;
