@@ -1,8 +1,8 @@
 import React from "react";
 import {State} from "../store/state";
-import {connect} from "react-redux";
 import {Todo} from "../store/todo/state";
 import {addTodo, completeTodo, removeTodo} from "../store/todo/actionCreator";
+import {connect} from "../store/connect";
 
 interface StateProps {
     todosList: Todo[];

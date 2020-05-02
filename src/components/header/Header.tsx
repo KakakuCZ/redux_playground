@@ -1,9 +1,9 @@
 import * as React from "react";
 import {ReactNode} from "react";
-import {connect} from "react-redux";
 import {State} from "../store/state";
 import {FlashMessage} from "../store/flashMessage/FlashMessage";
 import {hideMessage} from "../store/flashMessage/actionCreator";
+import {connect} from "../store/connect";
 
 interface OwnProps {
     children: ReactNode
@@ -37,7 +37,7 @@ const Header: React.FunctionComponent<OwnProps & StateProps & DispatchProps> = (
     </div>
 }
 
-export const ConnectedHeader = connect<StateProps, DispatchProps, OwnProps, State>(
+export const ConnectedHeader = connect<StateProps, DispatchProps, OwnProps>(
     ({flashMessages}: State): StateProps => ({
         flashMessagesList: flashMessages.flashMessageList
     }),
