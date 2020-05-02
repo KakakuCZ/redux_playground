@@ -1,9 +1,9 @@
 import * as React from "react";
 import {ReactNode} from "react";
 import {connect} from "react-redux";
-import {State} from "../state/state";
-import {FlashMessage} from "../state/flashMessage/FlashMessage";
-import {hideMessage} from "../state/flashMessage/actionCreator";
+import {State} from "../store/state";
+import {FlashMessage} from "../store/flashMessage/FlashMessage";
+import {hideMessage} from "../store/flashMessage/actionCreator";
 
 interface OwnProps {
     children: ReactNode

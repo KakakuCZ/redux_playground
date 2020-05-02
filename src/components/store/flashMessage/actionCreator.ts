@@ -29,7 +29,7 @@ export function showMessage(message: string, messageType: FlashMessageType): Thu
 
         if (state.flashMessages.autoHide) {
             setTimeout(() => {
-                //We must call getState because state could potentialy change between timeout start and end
+                //We must call getState because store could potentialy change between timeout start and end
                 if (getState().flashMessages.autoHide) {
                     dispatch(hideMessage(messageId))
                 }
