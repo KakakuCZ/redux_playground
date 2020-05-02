@@ -1,9 +1,9 @@
 import {ActionWithoutPayload, ActionWithPayload} from "../actionTypes";
 import {FlashMessageType} from "./FlashMessage";
 
-const SHOW_FLASH_MESSAGE = "SHOW_FLASH_MESSAGE";
-const HIDE_FLASH_MESSAGE = "HIDE_FLASH_MESSAGE";
-const HIDE_ALL_FLASH_MESSAGES = "HIDE_ALL_FLASH_MESSAGES";
+export const SHOW_FLASH_MESSAGE = "SHOW_FLASH_MESSAGE";
+export const HIDE_FLASH_MESSAGE = "HIDE_FLASH_MESSAGE";
+export const HIDE_ALL_FLASH_MESSAGES = "HIDE_ALL_FLASH_MESSAGES";
 
 interface ShowFlashMessageActionPayload {
     id: number;

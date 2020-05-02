@@ -1,7 +1,13 @@
-import {HideAllFlashMessagesAction, HideFlashMessageAction} from "./actions";
+import {
+    HIDE_ALL_FLASH_MESSAGES,
+    HIDE_FLASH_MESSAGE,
+    HideAllFlashMessagesAction,
+    HideFlashMessageAction,
+    SHOW_FLASH_MESSAGE,
+    ShowFlashMessageAction
+} from "./actions";
 import {FlashMessageType} from "./FlashMessage";
 import {ThunkAction} from "../thunk";
-import {Action} from "redux";
 
 let lastMessageId = 1;
 export function showMessage(message: string, messageType: FlashMessageType): ThunkAction<void, ShowFlashMessageAction | HideFlashMessageAction> {
@@ -9,7 +15,7 @@ export function showMessage(message: string, messageType: FlashMessageType): Thu
 
     return (dispatch, getState) => {
         dispatch({
-            type: "SHOW_FLASH_MESSAGE",
+            type: SHOW_FLASH_MESSAGE,
             payload: {
                 id: messageId,
                 type: messageType,
@@ -27,13 +33,13 @@ export function showMessage(message: string, messageType: FlashMessageType): Thu
 
 export function hideAllMessages(): HideAllFlashMessagesAction {
     return {
-        type: "HIDE_ALL_FLASH_MESSAGES"
+        type: HIDE_ALL_FLASH_MESSAGES
     }
 }
 
 export function hideMessage(id: number): HideFlashMessageAction {
     return {
-        type: "HIDE_FLASH_MESSAGE",
+        type: HIDE_FLASH_MESSAGE,
         payload: {
             id: id,
         },

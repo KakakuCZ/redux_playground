@@ -1,6 +1,6 @@
 import {FlashMessage} from "./FlashMessage";
 import {Reducer} from "redux";
-import {Actions} from "./actions";
+import {Actions, HIDE_ALL_FLASH_MESSAGES, HIDE_FLASH_MESSAGE, SHOW_FLASH_MESSAGE} from "./actions";
 
 export interface State {
     flashMessageList: FlashMessage[];
@@ -19,7 +19,7 @@ export const flashMessageReducer: Reducer<State, Actions> = (
     action: Actions
 ) => {
     switch (action.type) {
-        case "SHOW_FLASH_MESSAGE":
+        case SHOW_FLASH_MESSAGE:
             return {
                 ...state,
                 flashMessageList: [
@@ -32,14 +32,14 @@ export const flashMessageReducer: Reducer<State, Actions> = (
                 ],
                 flashMessagesCreated: ++state.flashMessagesCreated,
             };
-        case "HIDE_FLASH_MESSAGE":
+        case HIDE_FLASH_MESSAGE:
             return {
                 ...state,
                 flashMessageList: state.flashMessageList.filter((flashMessage) => {
                     return flashMessage.id !== action.payload.id;
                 }),
             }
-        case "HIDE_ALL_FLASH_MESSAGES":
+        case HIDE_ALL_FLASH_MESSAGES:
             return {
                 ...state,
                 flashMessageList: [],
