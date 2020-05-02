@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import {addTodo} from "../store/todo/actionCreator";
-import {State} from "../store/state";
-import {Todo} from "../store/todo/state";
-import {connect} from "../store/connect";
+import {addTodo} from "../../store/todo/actionCreator";
+import {State} from "../../store/state";
+import {Todo} from "../../store/todo/state";
+import {connect} from "../../store/connect";
 
 interface DispatchProps {
     onAddTodo: (text: string, owner: string) => void;

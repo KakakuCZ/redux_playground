@@ -1,8 +1,8 @@
 import React from "react";
-import {hideAllMessages, showMessage, toggleAutoHide} from "../store/flashMessage/actionCreator";
-import {FlashMessageType} from "../store/flashMessage/FlashMessage";
-import {State} from "../store/state";
-import {connect} from "../store/connect";
+import {hideAllMessages, showMessage, toggleAutoHide} from "../../store/flashMessage/actionCreator";
+import {FlashMessageType} from "../../store/flashMessage/FlashMessage";
+import {State} from "../../store/state";
+import {connect} from "../../store/connect";
 
 interface DispatchProps {
     showFlashMessage: (message: string, messageType: FlashMessageType) => void;

@@ -1,9 +1,9 @@
 import * as React from "react";
 import {ReactNode} from "react";
-import {State} from "../store/state";
-import {FlashMessage} from "../store/flashMessage/FlashMessage";
-import {hideMessage} from "../store/flashMessage/actionCreator";
-import {connect} from "../store/connect";
+import {State} from "../../store/state";
+import {FlashMessage} from "../../store/flashMessage/FlashMessage";
+import {hideMessage} from "../../store/flashMessage/actionCreator";
+import {connect} from "../../store/connect";
 
 interface OwnProps {
     children: ReactNode
