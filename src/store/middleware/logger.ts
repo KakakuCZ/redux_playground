@@ -2,7 +2,7 @@ import {Action, Middleware, MiddlewareAPI} from "redux";
 import {State} from "../state";
 import {ThunkDispatch} from "../thunk";
 
-export const loggerMiddleware: Middleware = (store: MiddlewareAPI<ThunkDispatch<any>, State>) => {
+export const logger: Middleware = (store: MiddlewareAPI<ThunkDispatch<any>, State>) => {
     return (next) => (action: Action) => {
         if (typeof action === "function") {
             console.log("Logger: Thunk action fired");
