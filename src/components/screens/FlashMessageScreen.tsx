@@ -1,8 +1,8 @@
 import React from "react";
-import {connect} from "react-redux";
 import {hideAllMessages, showMessage} from "../state/flashMessage/actionCreator";
 import {FlashMessageType} from "../state/flashMessage/FlashMessage";
 import {State} from "../state/state";
+import {connect} from "../state/connect";
 
 interface DispatchProps {
     showFlashMessage: (message: string, messageType: FlashMessageType) => void;
