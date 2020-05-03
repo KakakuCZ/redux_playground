@@ -10,6 +10,7 @@ import {HomeScreen} from "./components/screens/HomeScreen";
 import {ConnectedTodoListScreen} from "./components/screens/TodoListScreen";
 import {ConnectedAddTodoScreen} from "./components/screens/AddTodoScreen";
 import {ConnectedFlashMessageScreen} from "./components/screens/FlashMessageScreen";
+import {ConnectedExchangeRateScreen} from "./components/screens/ExchangeRateScreen";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                     <li><Link to={"/todoList"}>List TODOs</Link></li>
                     <li><Link to={"/addTodo"}>Add TODO</Link></li>
                     <li><Link to={"/flashMessage"}>Flash message</Link></li>
+                    <li><Link to={"/exchangeRate"}>Exchange rate</Link></li>
                 </ul>
               </ConnectedHeader>
 
@@ -35,6 +37,10 @@ function App() {
 
                   <Route path={"/flashMessage"}>
                       <ConnectedFlashMessageScreen />
+                  </Route>
+
+                  <Route path={"/exchangeRate"}>
+                      <ConnectedExchangeRateScreen />
                   </Route>
 
                   <Route path={"/"}>
