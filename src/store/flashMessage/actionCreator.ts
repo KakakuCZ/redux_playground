@@ -12,7 +12,7 @@ import {FlashMessageType} from "./FlashMessage";
 import {ThunkAction} from "../thunk";
 
 let lastMessageId = 1;
-export function showMessage(message: string, messageType: FlashMessageType): ThunkAction<void, ShowFlashMessageAction | HideFlashMessageAction> {
+export function showMessage(message: string, messageType: FlashMessageType): ThunkAction<Promise<Response>, ShowFlashMessageAction | HideFlashMessageAction > {
     const messageId = lastMessageId++;
 
     return (dispatch, getState) => {
@@ -35,6 +35,20 @@ export function showMessage(message: string, messageType: FlashMessageType): Thu
                 }
             }, 1000)
         }
+
+        const options = {
+            url: "ff",
+            method: "post",
+        };
+
+        return fetch(
+            options.url,
+            {
+                method: options.method,
+                credentials: "same-origin",
+
+            }
+        );
     }
 }
 

@@ -1,5 +1,5 @@
 import {AnyAction, Middleware, MiddlewareAPI} from "redux";
-import {ThunkDispatch} from "../thunk";
+import {ThunkDispatcher} from "../thunk";
 import {State} from "../state";
 import {ActionWithPayload} from "../actionTypes";
 import {showMessage} from "../flashMessage/actionCreator";
@@ -17,11 +17,11 @@ const defaultOptions: DefaultOptions = {
     isCrossOrigin: false,
 }
 
-export interface DispatchAction{
+export interface FetchAction{
     fetch?: Omit<Options, keyof DefaultOptions> & Partial<DefaultOptions>;
 }
 
-type DispatchActionWithFetch = AnyAction & DispatchAction;
+type DispatchActionWithFetch = AnyAction & FetchAction;
 
 export interface StoreActionPayload {
     fetching?: boolean;
@@ -31,7 +31,7 @@ export interface StoreActionPayload {
     status?: number;
 }
 
-export const fetcher: Middleware = ({dispatch}: MiddlewareAPI<ThunkDispatch<any>, State>) => {
+export const fetcher: Middleware = ({dispatch}: MiddlewareAPI<ThunkDispatcher<any>, State>) => {
     return (next) => (action: DispatchActionWithFetch) => {
         if (!action.fetch) {
             next(action);
@@ -41,7 +41,7 @@ export const fetcher: Middleware = ({dispatch}: MiddlewareAPI<ThunkDispatch<any>
                 ...action.fetch,
             };
 
-            const fetchAction: ActionWithPayload<any, StoreActionPayload> & DispatchAction = {
+            const fetchAction: ActionWithPayload<any, StoreActionPayload> & FetchAction = {
                 ...action,
                 payload: {
                     ...action.payload,

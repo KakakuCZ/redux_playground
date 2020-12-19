@@ -3,6 +3,7 @@ import {hideAllMessages, showMessage, toggleAutoHide} from "../../store/flashMes
 import {FlashMessageType} from "../../store/flashMessage/FlashMessage";
 import {State} from "../../store/state";
 import {connect} from "../../store/connect";
+import {ThunkDispatcher} from "../../store/thunk";
 
 interface DispatchProps {
     showFlashMessage: (message: string, messageType: FlashMessageType) => void;
@@ -63,7 +64,7 @@ export const ConnectedFlashMessageScreen = connect(
     }),
     (dispatch) => ({
         showFlashMessage: (message: string, messageType: FlashMessageType) => {
-            dispatch(showMessage(message, messageType));
+            const a = dispatch(showMessage(message, messageType));
         },
         hideAllMessages: () => {
             dispatch(hideAllMessages());

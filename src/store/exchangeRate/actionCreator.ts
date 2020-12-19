@@ -1,5 +1,5 @@
 import {LOAD_EXCHANGE_RATES} from "./actions";
-import {DispatchAction as FetchAction} from "../middleware/fetcher";
+import {FetchAction as FetchAction} from "../middleware/fetcher";
 import {ActionWithoutPayload} from "../actionTypes";
 
 export function loadExchangeRates(): ActionWithoutPayload<typeof LOAD_EXCHANGE_RATES> & FetchAction {
