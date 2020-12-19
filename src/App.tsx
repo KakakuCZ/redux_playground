@@ -11,6 +11,7 @@ import {ConnectedTodoListScreen} from "./components/screens/TodoListScreen";
 import {ConnectedAddTodoScreen} from "./components/screens/AddTodoScreen";
 import {ConnectedFlashMessageScreen} from "./components/screens/FlashMessageScreen";
 import {ConnectedExchangeRateScreen} from "./components/screens/ExchangeRateScreen";
+import { MvvmPersonsScreen } from './components/screens/MvvmPersonsScreen';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                     <li><Link to={"/addTodo"}>Add TODO</Link></li>
                     <li><Link to={"/flashMessage"}>Flash message</Link></li>
                     <li><Link to={"/exchangeRate"}>Exchange rate</Link></li>
+                    <li><Link to={"/mvvm-persons"}>MVVM Person List</Link></li>
                 </ul>
               </ConnectedHeader>
 
@@ -41,6 +43,10 @@ function App() {
 
                   <Route path={"/exchangeRate"}>
                       <ConnectedExchangeRateScreen />
+                  </Route>
+
+                  <Route path={"/mvvm-persons"}>
+                      <MvvmPersonsScreen />
                   </Route>
 
                   <Route path={"/"}>
